@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>維思維 WeisWay 心智自救與成長工具箱</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-teal-500 flex items-center justify-center text-white font-black text-xl shadow-md shadow-indigo-200">
+                    維
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight bg-gradient-to-r from-indigo-900 to-indigo-700 bg-clip-text text-transparent">維思維 WeisWay</h1>
+                    <p class="text-xs text-slate-500 font-medium">心智自救與思維重塑工具箱</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-1">
+                <button onclick="switchTab('wealth-quiz')" class="nav-btn px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-lg transition-all" id="btn-wealth-quiz">人生五大財富</button>
+                <button onclick="switchTab('mbti-boat')" class="nav-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-lg transition-all" id="btn-mbti-boat">正宗MBTI羅盤</button>
+                <button onclick="switchTab('procrastination-buster')" class="nav-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-lg transition-all" id="btn-procrastination-buster">拖延終結者</button>
+                <button onclick="switchTab('disc-simulator')" class="nav-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-lg transition-all" id="btn-disc-simulator">DISC溝通術</button>
+                <button onclick="switchTab('library')" class="nav-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-lg transition-all" id="btn-library">思維圖書館</button>
+            </nav>
+            <div class="flex items-center">
+                <span class="inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 ring-1 ring-inset ring-teal-600/20">
+                    <span class="w-1.5 h-1.5 bg-teal-500 rounded-full mr-1.5 animate-pulse"></span>
+                    思維自救 · 啟航
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="md:hidden flex border-b border-slate-200 bg-white overflow-x-auto whitespace-nowrap py-2 px-4 space-x-2 scrollbar-none">
+        <button onclick="switchTab('wealth-quiz')" class="mob-nav-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-indigo-600 text-white" id="mob-btn-wealth-quiz">五大財富</button>
+        <button onclick="switchTab('mbti-boat')" class="mob-nav-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-slate-100 text-slate-600" id="mob-btn-mbti-boat">MBTI羅盤</button>
+        <button onclick="switchTab('procrastination-buster')" class="mob-nav-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-slate-100 text-slate-600" id="mob-btn-procrastination-buster">拖延消除</button>
+        <button onclick="switchTab('disc-simulator')" class="mob-nav-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-slate-100 text-slate-600" id="mob-btn-disc-simulator">DISC溝通</button>
+        <button onclick="switchTab('library')" class="mob-nav-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-slate-100 text-slate-600" id="mob-btn-library">精華圖書</button>
+    </div>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Section -->
+        <section class="mb-10 text-center md:text-left md:flex md:items-center md:justify-between p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-900 text-white shadow-xl relative overflow-hidden">
+            <!-- Background Shapes -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.25),transparent)]"></div>
+            <div class="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-teal-500/10 blur-3xl"></div>
+            
+            <div class="relative z-10 max-w-2xl">
+                <span class="text-teal-400 text-xs font-extrabold tracking-wider uppercase bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20">這不是雞湯，是一趟心理自救之旅</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold mt-3 tracking-tight">「不靠運氣致富，也不靠忍耐自控」</h2>
+                <p class="text-sm sm:text-base text-slate-300 mt-3 font-light leading-relaxed">
+                    我們相信，你的人生窘境、焦慮和拖延，不是因為你不夠努力或缺乏意志力，而是缺少一整套底層的心智認知系統。
+                    在這裡，讓我們將《納瓦爾寶典》、《五種財富》等知識庫，轉化為陪伴你終身成長的互動武器。
+                </p>
+            </div>
+            <div class="relative z-10 mt-6 md:mt-0 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 justify-center">
+                <button onclick="switchTab('library')" class="px-5 py-3 rounded-xl bg-white text-indigo-900 font-bold hover:bg-slate-100 transition shadow-lg text-sm sm:text-base">
+                    瀏覽 13 部精華思維庫
+                </button>
+            </div>
+        </section>
+
+        <!-- APP CONTENT AREA -->
+
+        <!-- 1. Life Wheel / 5 Wealths Assessment -->
+        <div id="wealth-quiz-app" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Question Card -->
+                <div class="lg:col-span-2 bg-white rounded-3xl border border-slate-200/80 shadow-md p-6 sm:p-8 relative">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <span class="p-2 rounded-xl bg-indigo-50 text-indigo-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                            </span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">五大人生財富綜合評估</h3>
+                                <p class="text-xs text-slate-500"> Sahil Bloom 的《人生的五種財富》精準自評系統</p>
+                            </div>
+                        </div>
+                        <span class="text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full" id="quiz-progress">0/25 題</span>
+                    </div>
+
+                    <!-- Intro Screen -->
+                    <div id="quiz-intro-screen" class="space-y-6">
+                        <div class="bg-indigo-50/50 p-5 rounded-2xl border border-indigo-100/50">
+                            <h4 class="font-bold text-indigo-900 mb-2">什麼是真正的財富？</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                我們一生被灌輸「金錢 = 唯一財富」的迷思，卻在默默消耗最昂貴的其他人生資產。本測驗將帶你全面檢視：
+                                <strong class="text-slate-800">時間財富、社會財富、心理財富、身體財富、與金錢財富</strong>。每大範疇共 5 題，能幫你一眼看出你的人生優劣勢，制定真正的均衡成長計畫。
+                            </p>
+                        </div>
+                        <div class="flex justify-center pt-4">
+                            <button onclick="startQuiz()" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 transition-all transform hover:-translate-y-0.5">
+                                開始 3 分鐘評估
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Question Container -->
+                    <div id="quiz-question-screen" class="hidden space-y-6">
+                        <!-- Progress bar -->
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div id="quiz-progressbar" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
+                        </div>
+
+                        <!-- Category Title -->
+                        <span id="question-category" class="inline-block text-xs font-extrabold uppercase px-2.5 py-1 rounded bg-teal-50 text-teal-700 border border-teal-200/50">時間財富</span>
+
+                        <!-- Question Text -->
+                        <p id="question-text" class="text-lg font-bold text-slate-800 mt-2 leading-relaxed min-h-[50px]">
+                            1. 我知道時間很寶貴也急遽流逝、不可逆，所以我特別珍惜它。
+                        </p>
+
+                        <!-- Answer choices -->
+                        <div class="grid grid-cols-1 gap-3 pt-4">
+                            <button onclick="answerQuestion(4)" class="group flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30 text-left transition duration-150">
+                                <span class="font-medium group-hover:text-indigo-900">非常同意</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-indigo-600 flex items-center justify-center text-xs font-bold text-indigo-600 group-hover:bg-indigo-50">4</span>
+                            </button>
+                            <button onclick="answerQuestion(3)" class="group flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30 text-left transition duration-150">
+                                <span class="font-medium group-hover:text-indigo-900">同意</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-indigo-600 flex items-center justify-center text-xs font-bold text-indigo-600 group-hover:bg-indigo-50">3</span>
+                            </button>
+                            <button onclick="answerQuestion(2)" class="group flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30 text-left transition duration-150">
+                                <span class="font-medium group-hover:text-indigo-900">中立</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-indigo-600 flex items-center justify-center text-xs font-bold text-indigo-600 group-hover:bg-indigo-50">2</span>
+                            </button>
+                            <button onclick="answerQuestion(1)" class="group flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30 text-left transition duration-150">
+                                <span class="font-medium group-hover:text-indigo-900">不同意</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-indigo-600 flex items-center justify-center text-xs font-bold text-indigo-600 group-hover:bg-indigo-50">1</span>
+                            </button>
+                            <button onclick="answerQuestion(0)" class="group flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30 text-left transition duration-150">
+                                <span class="font-medium group-hover:text-indigo-900">非常不同意</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-indigo-600 flex items-center justify-center text-xs font-bold text-indigo-600 group-hover:bg-indigo-50">0</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Screen -->
+                    <div id="quiz-results-screen" class="hidden space-y-6">
+                        <div class="bg-emerald-50 border border-emerald-100 text-emerald-800 p-5 rounded-2xl flex items-center space-x-3">
+                            <span class="p-2 bg-emerald-100 rounded-xl text-emerald-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </span>
+                            <div>
+                                <h4 class="font-bold">恭喜完成診斷！</h4>
+                                <p class="text-xs text-emerald-700">這是一份可以幫助你改善時間分配、重塑心理、強化健康及重塑財務的實用自救指南。</p>
+                            </div>
+                        </div>
+
+                        <!-- Graphical Dashboard -->
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/50 space-y-4">
+                            <h4 class="font-bold text-slate-800">各項財富分數分析 (每項最高 20 分)</h4>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span class="text-indigo-700">⌛ 時間財富</span>
+                                        <span id="score-val-time" class="text-slate-700">12 / 20</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                        <div id="bar-score-time" class="bg-indigo-600 h-full w-[60%] transition-all duration-1000"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span class="text-teal-700">🤝 社會財富</span>
+                                        <span id="score-val-social" class="text-slate-700">14 / 20</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                        <div id="bar-score-social" class="bg-teal-500 h-full w-[70%] transition-all duration-1000"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span class="text-sky-700">🧠 心理財富</span>
+                                        <span id="score-val-mind" class="text-slate-700">15 / 20</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                        <div id="bar-score-mind" class="bg-sky-500 h-full w-[75%] transition-all duration-1000"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span class="text-emerald-700">💪 身體財富</span>
+                                        <span id="score-val-body" class="text-slate-700">10 / 20</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                        <div id="bar-score-body" class="bg-emerald-500 h-full w-[50%] transition-all duration-1000"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span class="text-amber-700">💰 金錢財富</span>
+                                        <span id="score-val-money" class="text-slate-700">8 / 20</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                        <div id="bar-score-money" class="bg-amber-500 h-full w-[40%] transition-all duration-1000"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tailored Advice Area -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-800">📊 個人化改善處方箋：</h4>
+                            <div id="advice-box" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Dynamic Advice injected here -->
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center pt-4">
+                            <button onclick="resetQuiz()" class="px-6 py-2.5 rounded-xl border border-indigo-600 text-indigo-600 font-bold hover:bg-indigo-50 transition">
+                                重新檢測
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theory and Framework Sidebar -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-md p-6">
+                        <h4 class="font-bold text-slate-900 border-b border-slate-100 pb-3 mb-4">這項自檢的智慧來源：</h4>
+                        <div class="space-y-4">
+                            <div class="flex space-x-3">
+                                <span class="flex-shrink-0 text-xl">💡</span>
+                                <div>
+                                    <h5 class="font-bold text-sm text-slate-800">快樂適應與「足夠」標準</h5>
+                                    <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                                        心理學的「快樂適應」指出，不論你賺再多，人都會適應並渴望更多（如同渣男追求新鮮感）。你必須定義你的「足夠標準」並將它輸入潛意識，才能停止無止境的金錢追逐，開始投資人生其他四種財富。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-3">
+                                <span class="flex-shrink-0 text-xl">⌛</span>
+                                <div>
+                                    <h5 class="font-bold text-sm text-slate-800">時間管理「艾森豪矩陣」</h5>
+                                    <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                                        時間不能無限賺取，失去就無法重來。你必須利用「重要與緊急」的十字十字法，把大部分心力放在「重要但不緊急」的事情上，例如培養深度人際關係與保持運動，防範未然。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-3">
+                                <span class="flex-shrink-0 text-xl">🤝</span>
+                                <div>
+                                    <h5 class="font-bold text-sm text-slate-800">「孤獨」是一種慢性病</h5>
+                                    <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                                        研究證實，長期孤獨對壽命的危害相當於「每天抽 15 支煙」。人際連繫是本能需求。你可以透過工具箱中的「關係圖」方法來評估和梳理你的人際廣度與深度。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 30-Day Body Wealth Challenge Widget -->
+                    <div class="bg-gradient-to-br from-indigo-900 to-indigo-950 rounded-3xl text-white p-6 shadow-lg shadow-indigo-100 relative overflow-hidden">
+                        <div class="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-teal-500/20 blur-xl"></div>
+                        <h4 class="font-bold text-teal-400 text-sm tracking-wider uppercase">限時挑戰任務</h4>
+                        <h3 class="font-bold text-lg mt-1">30天「身體財富」重建計畫</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mt-2">
+                            別在 80 歲大壽時無力地坐在輪椅上！利用 EFT 情境未來思考法，立刻和朋友組隊，選擇適合的運動等級並開始打卡：
+                        </p>
+                        <div class="mt-4 space-y-2">
+                            <label class="flex items-center space-x-2.5 text-xs text-slate-200">
+                                <input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                                <span>【銅牌】每天運動30分鐘 + 80% 天然原型食物 + 睡滿7小時</span>
+                            </label>
+                            <label class="flex items-center space-x-2.5 text-xs text-slate-200">
+                                <input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                                <span>【銀牌】每天運動45分鐘 + 90% 原型食物 + 固定的作息睡眠</span>
+                            </label>
+                            <label class="flex items-center space-x-2.5 text-xs text-slate-200">
+                                <input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                                <span>【金牌】起床喝水 + 運動60分(每週3次激勵) + 冥想與冷療</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. True MBTI Compass -->
+        <div id="mbti-boat-app" class="tab-content hidden">
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-md p-6 sm:p-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-6 mb-6 gap-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="p-2.5 rounded-xl bg-teal-50 text-teal-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </span>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">正宗 MBTI「航海羅盤」與認知功能模擬器</h3>
+                            <p class="text-sm text-slate-500">榮格認知功能（Ni, Fe, Ti, Se）與心智之船結構剖析</p>
+                        </div>
+                    </div>
+                    <!-- Selection of MBTI Types -->
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-bold text-slate-500">選擇你的性格：</span>
+                        <select id="mbti-type-select" onchange="updateMbtiSimulation()" class="bg-slate-50 border border-slate-200 text-slate-800 text-sm font-bold rounded-xl px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="INFJ">INFJ (聖人/黑暗諮商師)</option>
+                            <option value="INFP">INFP (探索者/理想主義)</option>
+                            <option value="ENTP">ENTP (發明家/辯論者)</option>
+                            <option value="INTJ">INTJ (策劃者/系統構建者)</option>
+                            <option value="ENFP">ENFP (追尋者/熱情激勵者)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Boat Simulator Diagram / Visualization -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="bg-slate-950 rounded-3xl p-6 relative overflow-hidden text-white shadow-inner flex flex-col justify-between min-h-[420px]">
+                            <!-- Grid lines -->
+                            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                            
+                            <div class="relative z-10 flex items-center justify-between">
+                                <span class="bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs px-2.5 py-1 rounded-full font-bold">心智航海模型 (The Mind Ship)</span>
+                                <span id="sim-type-badge" class="bg-gradient-to-r from-indigo-500 to-teal-500 text-white text-lg font-black px-4 py-1.5 rounded-2xl shadow-lg">INFJ</span>
+                            </div>
+
+                            <!-- Boat Metaphor Display -->
+                            <div class="relative z-10 py-8 flex flex-col items-center justify-center space-y-6">
+                                <!-- The Boat graphic (CSS built) -->
+                                <div class="relative w-full max-w-sm flex flex-col items-center">
+                                    <!-- Mast and Sail -->
+                                    <div class="w-1.5 h-36 bg-slate-400 rounded-t-full relative">
+                                        <!-- Primary Sail (Dominant Function) -->
+                                        <div class="absolute right-1.5 top-2 w-28 h-20 bg-indigo-500/40 border-2 border-indigo-400 rounded-l-full flex flex-col items-center justify-center p-2 backdrop-blur-sm transition-all duration-500" id="sail-dominant">
+                                            <span class="text-xs text-indigo-300 font-extrabold uppercase tracking-widest">主導 (船長)</span>
+                                            <span id="sim-dom-code" class="text-xl font-bold text-white">Ni</span>
+                                            <span id="sim-dom-name" class="text-[10px] text-slate-300 text-center">內傾直覺</span>
+                                        </div>
+                                        <!-- Secondary Sail (Auxiliary Function) -->
+                                        <div class="absolute left-1.5 top-6 w-24 h-16 bg-teal-500/40 border-2 border-teal-400 rounded-r-full flex flex-col items-center justify-center p-2 backdrop-blur-sm transition-all duration-500" id="sail-auxiliary">
+                                            <span class="text-xs text-teal-300 font-extrabold uppercase tracking-widest">輔助 (副手)</span>
+                                            <span id="sim-aux-code" class="text-lg font-bold text-white">Fe</span>
+                                            <span id="sim-aux-name" class="text-[10px] text-slate-300 text-center">外傾情感</span>
+                                        </div>
+                                    </div>
+                                    <!-- Hull (Tertiary & Inferior) -->
+                                    <div class="w-64 h-16 bg-gradient-to-b from-slate-700 to-slate-900 border-2 border-slate-600 rounded-b-3xl relative flex items-center justify-around px-4">
+                                        <!-- Tertiary Function -->
+                                        <div class="flex flex-col items-center transition-all duration-500" id="hull-tertiary">
+                                            <span class="text-[9px] text-slate-400 font-bold">第三 (保護壁)</span>
+                                            <span id="sim-tert-code" class="text-sm font-bold text-slate-200">Ti</span>
+                                        </div>
+                                        <!-- Inferior Function -->
+                                        <div class="flex flex-col items-center transition-all duration-500" id="hull-inferior">
+                                            <span class="text-[9px] text-slate-400 font-bold">劣勢 (潛在黑洞)</span>
+                                            <span id="sim-inf-code" class="text-sm font-bold text-rose-300">Se</span>
+                                        </div>
+                                    </div>
+                                    <!-- Sea and Waves -->
+                                    <div class="w-72 h-1 bg-gradient-to-r from-transparent via-teal-500/50 to-transparent mt-1 animate-pulse"></div>
+                                </div>
+                            </div>
+
+                            <!-- Boat Metaphor Narrative -->
+                            <div class="relative z-10 bg-slate-900/80 p-4 rounded-2xl border border-slate-800/80">
+                                <p id="sim-boat-story" class="text-xs text-slate-300 leading-relaxed">
+                                    【船長與副手的配合】：你的船長 (Ni) 非常喜歡躲在內在世界 (船艙內) 沉思；因此，副手 (Fe) 被迫在船頭觀察外在世界。當副手發展成熟時，你善解人意，大家都覺得你很懂社交；但當你能量消耗殆盡時，船長便會立刻拉下大閘。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personality Deep-dive Description & DoorSlam Explanation -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6">
+                            <h4 class="font-bold text-slate-900 mb-3 flex items-center space-x-2">
+                                <span class="text-indigo-600">⚡</span>
+                                <span id="profile-title">INFJ 心智全景分析</span>
+                            </h4>
+                            <div class="space-y-4 text-sm text-slate-600 leading-relaxed" id="profile-desc">
+                                <!-- Dynamic Description Content -->
+                            </div>
+                        </div>
+
+                        <!-- Special Widget: The DoorSlam Defense Mechanism -->
+                        <div id="doorslam-card" class="bg-rose-50/50 border border-rose-100 rounded-3xl p-6 space-y-3">
+                            <div class="flex items-center space-x-2.5 text-rose-800">
+                                <span class="p-1.5 bg-rose-100 rounded-lg text-rose-600">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                </span>
+                                <h4 class="font-extrabold text-sm tracking-wide uppercase">「斷崖式決裂」關門機制 (DoorSlam)</h4>
+                            </div>
+                            <p id="doorslam-desc" class="text-xs text-rose-700 leading-relaxed">
+                                當你在「觀察期」內反覆踩到 INFJ 的地雷（如：不尊重他們的私人充電時間、將他們的善良與情緒付出視為理所當然），他們的 Fe（情感共鳴）會瞬間關閉，由冰冷的第三功能 Ti 掌管心智。這時你會感覺到自己被從他們的世界中完全抹除，無愛也無恨，如同空氣。
+                            </p>
+                            <div class="bg-white/80 p-3 rounded-xl border border-rose-100 text-xs text-rose-800" id="doorslam-advice">
+                                <strong class="font-bold">🚨 挽回徵兆：</strong>如果他平常極度怕麻煩人，突然找你幫忙做件小事，那不是依賴，那是他對你最後的「溫柔考核測驗」。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Procrastination Buster -->
+        <div id="procrastination-buster-app" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Procrastination Buster Core -->
+                <div class="lg:col-span-2 bg-white rounded-3xl border border-slate-200/80 shadow-md p-6 sm:p-8 space-y-6">
+                    <div class="flex items-center space-x-3 border-b border-slate-100 pb-4">
+                        <span class="p-2 rounded-xl bg-indigo-50 text-indigo-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </span>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">兩分鐘微行動沙漏</h3>
+                            <p class="text-xs text-slate-500">不靠意志力跟欲望打仗，用兩分鐘啟動你的「大腦自動駕駛」</p>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-Step Task Breakdown Generator -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-sm text-slate-800">1. 戰勝「時滯不一致」！你的極簡任務設定：</h4>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/50 space-y-3">
+                            <label class="block text-xs font-bold text-slate-500">你一直拖延、不想做的事情是什麼？</label>
+                            <input id="procrast-task-input" type="text" placeholder="例如：看完這本沉悶的教科書 / 整理凌亂的書桌..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            
+                            <div class="pt-2">
+                                <label class="block text-xs font-bold text-slate-500">將它縮小到「2分鐘保證做得到」的微挑戰：</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5">
+                                    <button onclick="setMicroTask('打開這本書，只讀第一頁的目錄')" class="px-3 py-2 bg-white border border-slate-200 text-xs font-semibold text-slate-700 rounded-lg hover:border-indigo-600 hover:text-indigo-600 transition text-left">
+                                        📖 讀書 ➡️ 只讀第一頁目錄
+                                    </button>
+                                    <button onclick="setMicroTask('穿上跑鞋，到門口散步繞一圈')" class="px-3 py-2 bg-white border border-slate-200 text-xs font-semibold text-slate-700 rounded-lg hover:border-indigo-600 hover:text-indigo-600 transition text-left">
+                                        🏃 運動 ➡️ 穿上跑鞋去散步
+                                    </button>
+                                    <button onclick="setMicroTask('打開相機，只錄製15秒的空景')" class="px-3 py-2 bg-white border border-slate-200 text-xs font-semibold text-slate-700 rounded-lg hover:border-indigo-600 hover:text-indigo-600 transition text-left">
+                                        🎥 拍影片 ➡️ 只錄製15秒素材
+                                    </button>
+                                    <button onclick="setMicroTask('把桌上的一本書放回書架上')" class="px-3 py-2 bg-white border border-slate-200 text-xs font-semibold text-slate-700 rounded-lg hover:border-indigo-600 hover:text-indigo-600 transition text-left">
+                                        🧹 整理 ➡️ 只把一本書放回書架
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The 2-Minute Timer Area -->
+                    <div class="bg-gradient-to-r from-indigo-50 to-teal-50/50 rounded-2xl p-6 border border-indigo-100/50 flex flex-col items-center justify-center space-y-4">
+                        <div class="text-center">
+                            <span class="text-xs font-bold text-indigo-500 uppercase tracking-widest">當前微任務</span>
+                            <h4 id="current-micro-task" class="text-lg font-bold text-slate-800 mt-0.5">請先輸入或點選一個任務</h4>
+                        </div>
+                        
+                        <!-- Visual Countdown Circle -->
+                        <div class="relative w-36 h-36 flex items-center justify-center">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="72" cy="72" r="64" stroke="#e2e8f0" stroke-width="8" fill="transparent" />
+                                <circle id="timer-progress-ring" cx="72" cy="72" r="64" stroke="#4f46e5" stroke-width="8" fill="transparent" stroke-dasharray="402" stroke-dashoffset="0" class="transition-all duration-1000" />
+                            </svg>
+                            <div class="absolute text-3xl font-black text-slate-800 tracking-tight" id="timer-text">
+                                02:00
+                            </div>
+                        </div>
+
+                        <!-- Timer Controls -->
+                        <div class="flex space-x-3">
+                            <button id="timer-start-btn" onclick="toggleBusterTimer()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-md shadow-indigo-100 transition">
+                                開始倒數 (3, 2, 1 啟動!)
+                            </button>
+                            <button onclick="resetBusterTimer()" class="px-4 py-2.5 bg-white border border-slate-200 text-slate-600 hover:text-slate-800 font-bold text-sm rounded-xl transition">
+                                重設
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theory and Procrastination Advice Sidebar -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-md p-6">
+                        <h4 class="font-bold text-slate-900 border-b border-slate-100 pb-3 mb-4">為什麼「動手做」是唯一解答？</h4>
+                        <div class="space-y-4">
+                            <div class="flex space-x-3">
+                                <span class="flex-shrink-0 text-xl">🧠</span>
+                                <div>
+                                    <h5 class="font-bold text-sm text-slate-800">拖延是「情緒調節」問題</h5>
+                                    <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                                        拖延症權威 Timothy Pychyl 指出，拖延不是懶，而是你的大腦啟動了短期的情緒防禦（不想面對無聊、焦慮、挫折）。拖延是為了讓當下好過一點。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-3">
+                                <span class="flex-shrink-0 text-xl">🐵</span>
+                                <div>
+                                    <h5 class="font-bold text-sm text-slate-800">調皮猴子 vs 剁手老船長</h5>
+                                    <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                                        大腦前額葉（決策理性）是智慧先知，但邊緣系統（情緒享受）是調皮猴子。猴子吃下名為「多巴胺」的果實後，會逼你把理性丟給一個「未來不熟悉的陌生自己」。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-3">
+                                <span class="flex-shrink-0 text-xl">🔋</span>
+                                <div>
+                                    <h5 class="font-bold text-sm text-slate-800">建立自我效能感</h5>
+                                    <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                                        行動才會產生真正的動力！只要你設定「剛好、能承受的微小不舒服」，兩分鐘過後，大腦就會發現「事情沒有想像中痛苦」，並釋放成就感多巴胺，讓你自願做下去。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stanford Self-Control Toolkit -->
+                    <div class="bg-slate-900 rounded-3xl text-white p-6 shadow-lg relative overflow-hidden">
+                        <h4 class="font-bold text-teal-400 text-sm tracking-wider uppercase">史丹佛意志力提升法</h4>
+                        <h3 class="font-bold text-lg mt-1">提升自控力的5個微運動</h3>
+                        <ul class="mt-4 space-y-3 text-xs text-slate-300 leading-relaxed">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-indigo-400 font-bold">①</span>
+                                <span><strong class="text-white">放慢呼吸：</strong>將呼吸降到每分鐘 4~6 次（吸5秒、吐5秒），可大幅提高抵抗誘惑的 HRV（心率變異度）。</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-indigo-400 font-bold">②</span>
+                                <span><strong class="text-white">遠離誘惑提示：</strong>別送羊入虎口，不吃甜食就別去甜食區；不滑手機就把它丟到廚房抽屜。</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-indigo-400 font-bold">③</span>
+                                <span><strong class="text-white">15分鐘散步：</strong>睡眠不足會直接關掉前額葉。簡短的運動可以立即喚醒理性葡萄糖吸收。</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-indigo-400 font-bold">④</span>
+                                <span><strong class="text-white">設定邊界：</strong>練習對生活中的壞習慣說「我不要」，建立「玄關玻璃罐」拒絕規則。</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-indigo-400 font-bold">⑤</span>
+                                <span><strong class="text-white">記住我的真正目標：</strong>在瀕臨放棄時，問自己「我現在是為了什麼而忍耐？」拉回未來。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. DISC Speech Simulator -->
+        <div id="disc-simulator-app" class="tab-content hidden">
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-md p-6 sm:p-8">
+                <div class="flex items-center space-x-3 border-b border-slate-100 pb-4 mb-6">
+                    <span class="p-2 rounded-xl bg-indigo-50 text-indigo-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    </span>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">DISC 相剋溝通術模擬器</h3>
+                        <p class="text-xs text-slate-500">掌握掌控型、影響型、穩健型、與盡責型的弱點與專屬說話邏輯</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Target Selector -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <h4 class="font-bold text-sm text-slate-800">選擇你想說服的談判對象：</h4>
+                        
+                        <div class="grid grid-cols-1 gap-2.5">
+                            <button onclick="setDiscTarget('D')" id="disc-target-D" class="disc-target-btn flex items-center justify-between p-4 rounded-xl border border-indigo-600 bg-indigo-50/50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold">D</span>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800 text-sm">【D】掌控型 主管 (Dominance)</h5>
+                                        <p class="text-[10px] text-slate-500">務實、目標性極強、要結果</p>
+                                    </div>
+                                </div>
+                                <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1.707 1.707 0 00-2.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/></svg>
+                            </button>
+                            <button onclick="setDiscTarget('I')" id="disc-target-I" class="disc-target-btn flex items-center justify-between p-4 rounded-xl border border-slate-200 transition hover:bg-slate-50">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-8 h-8 rounded-lg bg-teal-500 text-white flex items-center justify-center font-bold">I</span>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800 text-sm">【I】影響型 網紅 (Influence)</h5>
+                                        <p class="text-[10px] text-slate-500">樂觀熱情、重情感、要舞台與認可</p>
+                                    </div>
+                                </div>
+                                <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1.707 1.707 0 00-2.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/></svg>
+                            </button>
+                            <button onclick="setDiscTarget('S')" id="disc-target-S" class="disc-target-btn flex items-center justify-between p-4 rounded-xl border border-slate-200 transition hover:bg-slate-50">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-8 h-8 rounded-lg bg-sky-500 text-white flex items-center justify-center font-bold">S</span>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800 text-sm">【S】穩健型 伴侶 (Steadiness)</h5>
+                                        <p class="text-[10px] text-slate-500">和平冷靜、懼怕突變、重穩定</p>
+                                    </div>
+                                </div>
+                                <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1.707 1.707 0 00-2.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/></svg>
+                            </button>
+                            <button onclick="setDiscTarget('C')" id="disc-target-C" class="disc-target-btn flex items-center justify-between p-4 rounded-xl border border-slate-200 transition hover:bg-slate-50">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center font-bold">C</span>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800 text-sm">【C】盡責型 專家 (Conscientious)</h5>
+                                        <p class="text-[10px] text-slate-500">極度注重細節、邏輯與事實、重完美</p>
+                                    </div>
+                                </div>
+                                <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1.707 1.707 0 00-2.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Roleplay Simulated Dialogue Screen -->
+                    <div class="lg:col-span-8 flex flex-col justify-between border border-slate-200 rounded-3xl bg-slate-50 overflow-hidden min-h-[440px]">
+                        <!-- Conversation Log Header -->
+                        <div class="bg-white border-b border-slate-200/80 px-5 py-3 flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span id="chat-header-avatar" class="w-3.5 h-3.5 bg-indigo-600 rounded-full"></span>
+                                <span id="chat-header-name" class="font-bold text-sm text-slate-800">掌控型主管 (D)</span>
+                            </div>
+                            <span class="text-xs text-slate-400">模擬溝通視窗</span>
+                        </div>
+
+                        <!-- Chat bubble area -->
+                        <div id="chat-log" class="p-5 flex-grow space-y-4 overflow-y-auto max-h-[300px]">
+                            <!-- System prompt -->
+                            <div class="text-center">
+                                <span class="inline-block text-[10px] font-bold bg-slate-200 text-slate-600 px-2.5 py-0.5 rounded-full">對方已進入視窗。使用溝通指南說服他！</span>
+                            </div>
+                            <!-- Target Bubble -->
+                            <div class="flex space-x-3 items-start">
+                                <div class="w-8 h-8 rounded-full bg-slate-200 flex-shrink-0 flex items-center justify-center font-bold text-xs" id="chat-bubble-avatar">D</div>
+                                <div class="bg-white border border-slate-100 p-3.5 rounded-2xl rounded-tl-none shadow-sm max-w-sm">
+                                    <p id="chat-target-statement" class="text-xs sm:text-sm text-slate-700 font-medium">「這份報告的細節到底是什麼？我等很久了，給我一個結論。」</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Response Choice Options -->
+                        <div class="bg-white border-t border-slate-200/80 p-4 space-y-2.5">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">選擇你的回應台詞：</span>
+                            
+                            <div id="chat-choices-container" class="grid grid-cols-1 gap-2">
+                                <!-- Dynamic speech buttons -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. ThinkTank Library (Searchable directory of 13 uploads) -->
+        <div id="library-app" class="tab-content hidden">
+            <!-- Search & Filters -->
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-md p-6 sm:p-8 mb-8 space-y-4">
+                <div class="md:flex md:items-center md:justify-between gap-4">
+                    <div class="flex-grow max-w-md relative">
+                        <input id="search-input" onkeyup="filterLibrary()" type="text" placeholder="搜尋心理學概念、書名或高收入技能..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                        <span class="absolute left-3.5 top-3.5 text-slate-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </span>
+                    </div>
+                    <!-- Quick Tag Filters -->
+                    <div class="flex flex-wrap items-center gap-1.5 mt-4 md:mt-0">
+                        <button onclick="filterByTag('all')" class="library-tag-btn px-3.5 py-1.5 text-xs font-bold rounded-full bg-indigo-600 text-white" id="tag-all">全部</button>
+                        <button onclick="filterByTag('致富')" class="library-tag-btn px-3.5 py-1.5 text-xs font-bold rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition" id="tag-致富">致富思維</button>
+                        <button onclick="filterByTag('諮商')" class="library-tag-btn px-3.5 py-1.5 text-xs font-bold rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition" id="tag-諮商">心理諮商</button>
+                        <button onclick="filterByTag('上癮')" class="library-tag-btn px-3.5 py-1.5 text-xs font-bold rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition" id="tag-上癮">社交成癮</button>
+                        <button onclick="filterByTag('自控')" class="library-tag-btn px-3.5 py-1.5 text-xs font-bold rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition" id="tag-自控">習慣與自控</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Library Grid Cards (13 Articles parsed) -->
+            <div id="library-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card templates populated by JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Detailed Modal View for ThinkTank -->
+    <div id="library-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-4 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <span id="modal-category" class="text-xs font-extrabold uppercase px-2 py-0.5 rounded bg-indigo-50 text-indigo-700">分類</span>
+                <button onclick="closeLibraryModal()" class="text-slate-400 hover:text-slate-600 transition font-bold text-lg">✕</button>
+            </div>
+            <h3 id="modal-title" class="text-2xl font-black text-slate-900 leading-tight">書籍/影片名稱</h3>
+            <p id="modal-source" class="text-xs text-slate-500 font-medium">來源影片：連結或標籤</p>
+            
+            <div class="space-y-4">
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/50">
+                    <h4 class="font-extrabold text-sm text-indigo-900 mb-1.5">🔑 精華核心觀點 (Gold Nugget)</h4>
+                    <p id="modal-nugget" class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">這裡會填充核心的金句...</p>
+                </div>
+                
+                <div class="space-y-2">
+                    <h4 class="font-extrabold text-sm text-slate-900">🛠️ 心智工具與實操框架：</h4>
+                    <div id="modal-steps" class="space-y-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <!-- Dynamic points populate -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-4 flex justify-end">
+                <button onclick="closeLibraryModal()" class="px-5 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition font-bold text-sm">
+                    我知道了，關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8 mt-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-slate-700">維思維 WeisWay 心智重建系列 · 獨立互動工具箱</p>
+            <p>本網站由 AI 依據維思維（WeisWay）上傳之 13 部經典影片手稿打造，不含廣告、完全免費。</p>
+            <p class="text-[10px] text-slate-400">© 2026 WeisWay MindLab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        // Tab switching controller
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Show selected
+            document.getElementById(tabId + '-app').classList.remove('hidden');
+
+            // Reset navigation active state - Desktop
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-indigo-600', 'bg-indigo-50');
+                btn.classList.add('text-slate-600', 'hover:text-indigo-600', 'hover:bg-slate-50');
+            });
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-600', 'hover:text-indigo-600', 'hover:bg-slate-50');
+                activeBtn.classList.add('text-indigo-600', 'bg-indigo-50');
+            }
+
+            // Reset navigation active state - Mobile
+            document.querySelectorAll('.mob-nav-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            const activeMobBtn = document.getElementById('mob-btn-' + tabId);
+            if (activeMobBtn) {
+                activeMobBtn.classList.remove('bg-slate-100', 'text-slate-600');
+                activeMobBtn.classList.add('bg-indigo-600', 'text-white');
+            }
+        }
+
+        // ==========================================
+        // 1. LIFE WHEEL / 5 WEALTHS ASSESSMENT DATA & LOGIC
+        // ==========================================
+        const quizQuestions = [
+            // Time Wealth (0-4)
+            { category: "時間財富", text: "我知道時間極其寶貴且流失不可逆，所以我特別珍惜它。" },
+            { category: "時間財富", text: "我很清楚自己生活和工作中，最重要的一到三件事是什麼。" },
+            { category: "時間財富", text: "我能專心在最重要的事情上，不容易被外界打斷或分心。" },
+            { category: "時間財富", text: "我不會常忙到焦頭爛額或東跑西跑，而是有條不紊地處理事務。" },
+            { category: "時間財富", text: "我的時間與行程基本都能自己掌控，不會一直被瑣事或他人牽著走。" },
+            
+            // Social Wealth (5-9)
+            { category: "社會財富", text: "我擁有幾段深厚、充滿愛、且能彼此絕對支持的真實關係（如：深夜3點打電話，對方不嫌煩）。" },
+            { category: "社會財富", text: "我能夠扮演好伴侶、父母、家人、或朋友等我所在意的角色。" },
+            { category: "社會財富", text: "我認識一些不同領域的朋友，能經常從他們身上學到新東西。" },
+            { category: "社會財富", text: "我覺得自己的生存與某個「比個人更為宏大的目標」有連接感。" },
+            { category: "社會財富", text: "我不會靠買名牌、炫耀物品或地位來證明自己，或追求他人的羨慕。" },
+            
+            // Mind Wealth (10-14)
+            { category: "心理財富", text: "我對世界抱有很大的好奇心，像小孩一樣熱愛探索新知。" },
+            { category: "心理財富", text: "我有清晰的人生目標與發展方向，能堅顧眼前的挑戰與未來的選擇。" },
+            { category: "心理財富", text: "我熱愛學習與成長，總是努力發揮自己天生的獨特潛能。" },
+            { category: "心理財富", text: "我相信自己能應對突如其來的環境變化，並保持情緒平穩與適應度。" },
+            { category: "心理財富", text: "我有自己的「心靈排毒儀式」（如：呼吸、冥想、適度流白），幫自己充電與冷靜。" },
+            
+            // Body Wealth (15-19)
+            { category: "身體財富", text: "以我目前的年紀來說，我覺得自己身體健康、精力充沛、充滿活力。" },
+            { category: "身體財富", text: "我有規律的運動習慣，並奉行健康的生活方式。" },
+            { category: "身體財富", text: "我平時攝入的食物以天然、少加工的原型食物為主。" },
+            { category: "身體財富", text: "我每晚都能睡滿7小時以上，且醒來時感到休息足夠。" },
+            { category: "身體財富", text: "我已有長遠的養生計畫，確保自己到了80歲大壽時還能生龍活虎地跳舞。" },
+            
+            // Money Wealth (20-24)
+            { category: "金錢財富", text: "我知道對我來說「財務足夠」的確切數字與標準是多少（不再盲目追逐更多）。" },
+            { category: "金錢財富", text: "我的收入能隨著自身專業能力、獨有技能的提升而同步增長。" },
+            { category: "金錢財富", text: "我每個月花費的錢不會超過我賺取收入的額度，且有記帳習慣。" },
+            { category: "金錢財富", text: "我有一套長期的理財方式，能把多餘的資金投在持續升值的資產上。" },
+            { category: "金錢財富", text: "我把金錢當作「幫助累積其他四項人生財富」的工具，而非人生的終極目標。" }
+        ];
+
+        let quizCurrentIndex = 0;
+        let quizAnswers = new Array(25).fill(0);
+
+        function startQuiz() {
+            quizCurrentIndex = 0;
+            quizAnswers.fill(0);
+            document.getElementById('quiz-intro-screen').classList.add('hidden');
+            document.getElementById('quiz-question-screen').classList.remove('hidden');
+            document.getElementById('quiz-results-screen').classList.add('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (quizCurrentIndex >= 25) {
+                showResults();
+                return;
+            }
+            const q = quizQuestions[quizCurrentIndex];
+            document.getElementById('question-category').innerText = q.category;
+            document.getElementById('question-text').innerText = `${quizCurrentIndex + 1}. ${q.text}`;
+            document.getElementById('quiz-progress').innerText = `${quizCurrentIndex + 1} / 25 題`;
+            
+            const progressPercent = ((quizCurrentIndex) / 25) * 100;
+            document.getElementById('quiz-progressbar').style.width = `${progressPercent}%`;
+        }
+
+        function answerQuestion(score) {
+            quizAnswers[quizCurrentIndex] = score;
+            quizCurrentIndex++;
+            showQuestion();
+        }
+
+        function resetQuiz() {
+            startQuiz();
+        }
+
+        function showResults() {
+            document.getElementById('quiz-question-screen').classList.add('hidden');
+            document.getElementById('quiz-results-screen').classList.remove('hidden');
+            
+            // Calculate scores for the 5 categories (5 questions each)
+            let scores = { time: 0, social: 0, mind: 0, body: 0, money: 0 };
+            
+            for (let i = 0; i < 5; i++) scores.time += quizAnswers[i];
+            for (let i = 5; i < 10; i++) scores.social += quizAnswers[i];
+            for (let i = 10; i < 15; i++) scores.mind += quizAnswers[i];
+            for (let i = 15; i < 20; i++) scores.body += quizAnswers[i];
+            for (let i = 20; i < 25; i++) scores.money += quizAnswers[i];
+
+            // Update UI elements
+            document.getElementById('score-val-time').innerText = `${scores.time} / 20`;
+            document.getElementById('score-val-social').innerText = `${scores.social} / 20`;
+            document.getElementById('score-val-mind').innerText = `${scores.mind} / 20`;
+            document.getElementById('score-val-body').innerText = `${scores.body} / 20`;
+            document.getElementById('score-val-money').innerText = `${scores.money} / 20`;
+
+            // Update visual progress bars
+            document.getElementById('bar-score-time').style.width = `${(scores.time / 20) * 100}%`;
+            document.getElementById('bar-score-social').style.width = `${(scores.social / 20) * 100}%`;
+            document.getElementById('bar-score-mind').style.width = `${(scores.mind / 20) * 100}%`;
+            document.getElementById('bar-score-body').style.width = `${(scores.body / 20) * 100}%`;
+            document.getElementById('bar-score-money').style.width = `${(scores.money / 20) * 100}%`;
+
+            // Dynamic prescription recommendations
+            const adviceBox = document.getElementById('advice-box');
+            adviceBox.innerHTML = '';
+
+            // Generate specific feedback cards
+            if (scores.time < 12) {
+                adviceBox.innerHTML += `
+                    <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-indigo-900">⌛ 時間處方箋：奪回生活掌控度</h5>
+                        <p class="text-slate-600 leading-relaxed">
+                            你正把時間大量換成金錢，或被無關緊要的人力消耗了。建議立刻使用「重要不緊急」艾森豪矩陣，騰出固定時光「適度流白」來深度思考與喘息，拒絕非必要的社交活動。
+                        </p>
+                    </div>
+                `;
+            } else {
+                adviceBox.innerHTML += `
+                    <div class="bg-indigo-50/50 border border-slate-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-slate-800">⌛ 時間狀態：表現良好</h5>
+                        <p class="text-slate-500 leading-relaxed">你已經掌握了自己生活的時間自主權，請繼續維持「主動規劃而非被動回應」的作息習慣。</p>
+                    </div>
+                `;
+            }
+
+            if (scores.social < 12) {
+                adviceBox.innerHTML += `
+                    <div class="bg-teal-50 border border-teal-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-teal-900">🤝 社會處方箋：修復並累積深度連接</h5>
+                        <p class="text-slate-600 leading-relaxed">
+                            你的關係可能流於浮躁，甚至有「假性親密關係」的隱患。建議挑出你最在意的一至三個人，拋開社交面具，多分享內心真正的脆弱，用長期、誠實、不求回報的相處方式，鍛造你的「深層防波堤關係」。
+                        </p>
+                    </div>
+                `;
+            } else {
+                adviceBox.innerHTML += `
+                    <div class="bg-teal-50/50 border border-slate-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-slate-800">🤝 社會狀態：人際溫暖</h5>
+                        <p class="text-slate-500 leading-relaxed">你擁有很好的深度人際支持。在遇到挫折和低潮時，記得大膽向他們傾吐脆弱，那是抵擋焦慮的最好屏障。</p>
+                    </div>
+                `;
+            }
+
+            if (scores.mind < 12) {
+                adviceBox.innerHTML += `
+                    <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-sky-900">🧠 心理處方箋：尋找生命火花與好奇心</h5>
+                        <p class="text-slate-600 leading-relaxed">
+                            你可能正處在低耗能、對生活麻木的狀態。建議你待在舒適圈的邊緣，去嘗試一些剛好、微小的不舒服（如改變上班路線），並透過「你喜歡、你擅長、世界需要」的三圓交集圖，重新探索你心流的開端。
+                        </p>
+                    </div>
+                `;
+            } else {
+                adviceBox.innerHTML += `
+                    <div class="bg-sky-50/50 border border-slate-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-slate-800">🧠 心理狀態：心靈富足</h5>
+                        <p class="text-slate-500 leading-relaxed">你擁有強烈的好奇心與自我效能感。請保持與天賦同行，並嘗試打造個人化的「每日微習慣」防禦大腦能量耗盡。</p>
+                    </div>
+                `;
+            }
+
+            if (scores.body < 12) {
+                adviceBox.innerHTML += `
+                    <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-emerald-900">💪 身體處方箋：立刻啟動30天能量計畫</h5>
+                        <p class="text-slate-600 leading-relaxed">
+                            細胞缺乏危機意識，生物鐘會快轉、加速老化。強烈建議跟朋友進行「30天銅牌挑戰」，每天至少散步或高強度運動15~30分鐘。少吃加工甜食，別讓胰島素一直瘋狂加班！
+                        </p>
+                    </div>
+                `;
+            } else {
+                adviceBox.innerHTML += `
+                    <div class="bg-emerald-50/50 border border-slate-100 p-4 rounded-xl text-xs space-y-1">
+                        <h5 class="font-bold text-slate-800">💪 身體狀態：精力充足</h5>
+                        <p class="text-slate-500 leading-relaxed">你目前的身體狀態很好，運動和飲食非常規律。請繼續利用高強度運動啟動身體的自噬細胞，減慢老化。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ==========================================
+        // 2. TRUE MBTI BOAT METAPHOR LOGIC & DATA
+        // ==========================================
+        const mbtiDatabase = {
+            "INFJ": {
+                name: "INFJ (聖人 / 黑暗諮商師)",
+                domCode: "Ni", domName: "內領直覺",
+                auxCode: "Fe", auxName: "外傾情感",
+                tertCode: "Ti", tertName: "內傾思考",
+                infCode: "Se", infName: "外傾實感",
+                story: "【船長與副手的配合】：你的船長 (Ni) 非常喜歡躲在內在世界 (船艙) 沉思未來；副手 (Fe) 被迫獨自上甲板跟外界社交、迎合他人，扮演最體貼溫暖的「老好人」。但當副手耗盡多巴胺崩潰時，船長便會啟動防禦 Ti，理智全面接管——這就是著名的 Doorslam 斷崖式關門決裂。",
+                deep: `
+                    <p><strong>1. 鏡像神經元過載：</strong>你的 Fe (外傾情感) 就像一塊超級情商海綿。你無意識地吸收周邊所有人的情緒，甚至為此疲憊不堪。你需要比一般人多 2~3 倍的獨處時間排毒。</p>
+                    <p class="mt-2"><strong>2. 完美防衛 (Ti)：</strong>當你受到挑戰時，你的第三功能 Ti 會像冷酷無情的法官。你會開始自我審判，甚至嚴厲地譴責自己犯了錯，這容易讓你陷入情緒低落中。</p>
+                    <p class="mt-2"><strong>3. 劣勢感官 (Se) 報復：</strong>在極度壓力下，你最弱的劣勢 Se 容易失控，表現為報復性暴飲暴食、瘋狂購物或對物質環境極度焦躁。</p>
+                `
+            },
+            "INFP": {
+                name: "INFP (探索者 / 溫和理想主義)",
+                domCode: "Fi", domName: "內領情感",
+                auxCode: "Ne", auxName: "外傾直覺",
+                tertCode: "Si", tertName: "內傾實感",
+                infCode: "Te", infName: "外傾思考",
+                story: "【船長與副手的配合】：你的船長 (Fi) 是一位極端注重個人價值觀與內在真實的隐士；副手 (Ne) 則是一位在甲板上好奇張望、追求天馬行空靈感與創意的探索者。你們排斥世俗教條，在年輕時極容易對未來感到強烈迷茫，但天生在寫作與說故事上極具天賦。",
+                deep: `
+                    <p><strong>1. 自我一致性要求：</strong>你的主導 Fi 讓你絕不願意為了討好他人而做違背原則的事。如果被迫處在虛偽的職場應酬中，你的認知失調會極其劇烈。</p>
+                    <p class="mt-2"><strong>2. 歷史回溯 (Si)：</strong>你的第三功能 Si 讓你在受傷時，會不由自主地退回到過去熟悉的、最舒適安全的保護圈裡，反覆回顧細節，拒絕跨出新的一步。</p>
+                    <p class="mt-2"><strong>3. 劣勢 Te (黑化控制)：</strong>極端崩潰或焦慮時，你平時不常用的外傾思考 (Te) 會暴走。你會突然變得對身邊人極端挑剔、苛刻、講求絕對效率與冰冷邏輯，不近人情。</p>
+                `
+            },
+            "ENTP": {
+                name: "ENTP (發明家 / 瘋狂辯論家)",
+                domCode: "Ne", domName: "外領直覺",
+                auxCode: "Ti", auxName: "內傾思考",
+                tertCode: "Fe", tertName: "外傾情感",
+                infCode: "Si", infName: "內傾實感",
+                story: "【船長與副手的配合】：船長 (Ne) 是一位熱愛追求新點子、站在船頭吹著海風尋找下一個冒險島嶼的冒險家；副手 (Ti) 則是在船艙冷靜分析地圖與數據。你們對事物反應超快，在危機面前極端興奮，但也是最容易被新點子勾引而「虎頭蛇尾」的拖延大師。",
+                deep: `
+                    <p><strong>1. 好奇心與多巴胺：</strong>你的大腦天生為新奇事物釋放多巴胺。當一個任務的「新鮮感」退去，你就很難再有動力。你需要微挑戰或限制期限（DDL）逼迫自己前行。</p>
+                    <p class="mt-2"><strong>2. 社交小丑 (Fe)：</strong>你的第三 Fe 讓你擅長察覺社交氛圍，並透過幽默、辯論來製造樂趣或刺激。雖然好玩，但也可能被保守的人視為愛唱反調或不受控。</p>
+                    <p class="mt-2"><strong>3. 劣勢 Si (細節忽視)：</strong>你極度討厭重複和乏味的表格行政工作，甚至連加減乘除都不想看。在高度焦慮時，你會突然生病或對身體的微小毛病感到過度敏感與恐慌。</p>
+                `
+            },
+            "INTJ": {
+                name: "INTJ (系統構建者 / 鐵面軍師)",
+                domCode: "Ni", domName: "內傾直覺",
+                auxCode: "Te", auxName: "外傾思考",
+                tertCode: "Fi", tertName: "內傾情感",
+                infCode: "Se", infName: "外傾實感",
+                story: "【船長與副手的配合】：船長 (Ni) 非常擅長一眼看穿未來趨勢與底層邏輯；副手 (Te) 則在甲板上把這些洞察轉化成高效、有條理的系統和實施計畫。這是一個極致追求真理與效能的結構，讓你們在創業與資料科學領域容易獲得巨大成果。",
+                deep: `
+                    <p><strong>1. 效率至上主義：</strong>副手 Te 讓你說話極度精簡，討厭冗長的泛泛之談。對於掌控型 (D) 或影響型 (I) 的溝通對手，你必須學會包裝你的專業實力與結論。</p>
+                    <p class="mt-2"><strong>2. 內在情感保護 (Fi)：</strong>你的第三功能 Fi 非常敏感且幼稚。你平常看起來像冰冷的機器，但內心卻對自己認定的原則、喜愛的少數人無比忠誠，絕不妥協。</p>
+                    <p class="mt-2"><strong>3. 劣勢 Se 暴走：</strong>當你面臨複雜的突發狀況而無法理性規劃時，你的 Se 容易崩潰。可能表現為突然砸東西、對外界噪音極其無法容忍，或陷入感官發洩模式。</p>
+                `
+            },
+            "ENFP": {
+                name: "ENFP (熱情傳播者 / 催化劑)",
+                domCode: "Ne", domName: "外傾直覺",
+                auxCode: "Fi", auxName: "內傾情感",
+                tertCode: "Te", tertName: "外傾思考",
+                infCode: "Si", infName: "內傾實感",
+                story: "【船長與副手的配合】：船長 (Ne) 是一位對人生的千百種可能性充滿熱情、隨時準備啟航的探險者；副手 (Fi) 則在內心溫柔地指引著「什麼才是對的」。你們是天然的鼓舞者，最擅長說故事並打動人心，但也很容易陷入「討好型人格」的泥沼中。",
+                deep: `
+                    <p><strong>1. 強烈情緒共振：</strong>你的主導 Ne 配上副手 Fi，讓你對人際關係極度敏感。如果身邊的人陷入情緒低潮，你常會忍不住上網查資料、想要主動替對方尋求心理諮商或解套。</p>
+                    <p class="mt-2"><strong>2. 效率大棒 (Te)：</strong>在需要趕工或受到極大外部質疑時，你的第三功能 Te 會跳出來，此時你會一反平時的溫和，變得極其雷厲風行、講求速度，甚至說話刺人。</p>
+                    <p class="mt-2"><strong>3. 劣勢 Si 的記憶沉積：</strong>平常粗心大意的你，在夜深人靜或失意時，劣勢 Si 會讓你對過去某些慘痛失敗、分手的慘烈細節，進行建構式的反覆回憶，形成自證預言的悲傷圈。</p>
+                `
+            }
+        };
+
+        function updateMbtiSimulation() {
+            const selectVal = document.getElementById('mbti-type-select').value;
+            const data = mbtiDatabase[selectVal];
+            
+            // Update Badges & Texts
+            document.getElementById('sim-type-badge').innerText = selectVal;
+            document.getElementById('sim-dom-code').innerText = data.domCode;
+            document.getElementById('sim-dom-name').innerText = data.domName;
+            document.getElementById('sim-aux-code').innerText = data.auxCode;
+            document.getElementById('sim-aux-name').innerText = data.auxName;
+            document.getElementById('sim-tert-code').innerText = data.tertCode;
+            document.getElementById('sim-inf-code').innerText = data.infCode;
+            
+            document.getElementById('sim-boat-story').innerHTML = `<strong>【船長與副手的配合】：</strong>` + data.story;
+            
+            document.getElementById('profile-title').innerText = `${data.name} 心智全景分析`;
+            document.getElementById('profile-desc').innerHTML = data.deep;
+
+            // Handle INFJ specific Doorslam card visibility
+            const dsCard = document.getElementById('doorslam-card');
+            if (selectVal === 'INFJ') {
+                dsCard.classList.remove('hidden');
+                document.getElementById('doorslam-desc').innerText = `當你在「觀察期」內反覆踩到 INFJ 的地雷（如：不尊重他們的私人充電時間、將他們的善良與情緒付出視為理所當然），他們的 Fe（情感共鳴）會瞬間關閉，由冰冷的第三功能 Ti 掌管心智。這時你會感覺到自己被從他們的世界中完全抹除，無愛也無恨，如同空氣。`;
+                document.getElementById('doorslam-advice').innerHTML = `<strong class="font-bold">🚨 挽回指南：</strong>別像個瘋子一樣瘋狂敲門，你需要「給他空間」。主動展現你在他所在意的價值觀上的成長，那扇差點關上的門才會再次打開。`;
+            } else if (selectVal === 'INFP') {
+                dsCard.classList.remove('hidden');
+                document.getElementById('doorslam-desc').innerText = `【INFP 的隱形地雷與撤退】：INFP 平時像隻溫和的小白兔。但如果有人踩到他們的主導核心 Fi 價值觀（如：嘲笑他們的夢想、或在他們傷心時冷嘲熱諷），他們會立刻縮進心靈洞穴。外表看起來依舊禮貌，但在心裡已經在「寫分開倒數的劇本」。`;
+                document.getElementById('doorslam-advice').innerHTML = `<strong class="font-bold">🚨 挽回指南：</strong>不要試圖跟他們用冷冰冰的邏輯辯論。最好的方式是像《蛤蟆先生》中的蒼鷺一樣，給予他們100%的無條件接納，允許他們脆弱。`;
+            } else {
+                dsCard.classList.add('hidden');
+            }
+        }
+
+        // ==========================================
+        // 3. PROCRASTINATION TIMER LOGIC
+        // ==========================================
+        let timerSeconds = 120; // 2 minutes
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        function setMicroTask(taskText) {
+            document.getElementById('current-micro-task').innerText = `🚀 微任務：${taskText}`;
+            resetBusterTimer();
+        }
+
+        function toggleBusterTimer() {
+            const taskInput = document.getElementById('procrast-task-input').value.trim();
+            const currentTaskEl = document.getElementById('current-micro-task');
+            
+            if (currentTaskEl.innerText.includes("請先輸入或點選一個任務")) {
+                if (taskInput) {
+                    setMicroTask(`為「${taskInput}」只踏出第一步（接觸而不硬撐）`);
+                } else {
+                    currentTaskEl.innerText = "⚠️ 請先點選下方的微任務或在上面輸入目標！";
+                    currentTaskEl.classList.add('text-rose-600');
+                    setTimeout(() => currentTaskEl.classList.remove('text-rose-600'), 2000);
+                    return;
+                }
+            }
+
+            const startBtn = document.getElementById('timer-start-btn');
+            
+            if (isTimerRunning) {
+                // Pause timer
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                startBtn.innerText = "繼續微行動";
+                startBtn.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+                startBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+            } else {
+                // Start timer
+                isTimerRunning = true;
+                startBtn.innerText = "暫停一下";
+                startBtn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+                startBtn.classList.add('bg-amber-500', 'hover:bg-amber-600');
+                
+                timerInterval = setInterval(() => {
+                    timerSeconds--;
+                    updateTimerDisplay();
+                    
+                    if (timerSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        timerCompleted();
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetBusterTimer() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerSeconds = 120;
+            updateTimerDisplay();
+            const startBtn = document.getElementById('timer-start-btn');
+            startBtn.innerText = "開始倒數 (3, 2, 1 啟動!)";
+            startBtn.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+            startBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const s = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timer-text').innerText = `${m}:${s}`;
+            
+            // Ring animation (402 is maximum circumference for r=64 circle)
+            const strokeOffset = 402 - (402 * (timerSeconds / 120));
+            document.getElementById('timer-progress-ring').style.strokeDashoffset = strokeOffset;
+        }
+
+        function timerCompleted() {
+            // Task completed success banner
+            const currentTaskEl = document.getElementById('current-micro-task');
+            currentTaskEl.innerHTML = `🎉 <strong class="text-emerald-600">完成！</strong> 你的大腦已被啟動！是否發現事情其實沒那麼痛苦？`;
+            
+            // Reset button display
+            const startBtn = document.getElementById('timer-start-btn');
+            startBtn.innerText = "再次挑戰微行動";
+            startBtn.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+            startBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+        }
+
+        // ==========================================
+        // 4. DISC SIMULATOR LOGIC & DIALOGUE ENGINE
+        // ==========================================
+        let discCurrentTarget = 'D';
+        
+        const discScenarioData = {
+            'D': {
+                name: "掌控型主管 (D)",
+                avatar: "D",
+                color: "bg-indigo-600",
+                intro: "「這份報告的細節到底是什麼？我等很久了，給我一個結論。」",
+                choices: [
+                    {
+                        text: "「經理，結論是我們本季營收增長了15%。主要由廣告預算轉移帶來，具體數據在報告第一頁，其餘細節我已簡化在附錄。」",
+                        isCorrect: true,
+                        reply: "「很好！效率很高。這才是我要的報告。其餘不重要，做的不錯！」",
+                        feedback: "💡 說服成功！對待 D 型人一定要：先給結果大意，講求極高效率，不重複囉嗦，直接給出解決方案。"
+                    },
+                    {
+                        text: "「報告是這樣的，我們上個月開了三次會，討論了非常多的方案，我們原本想買另一個廣告，但因為財務部門那邊卡住，所以後來...」",
+                        isCorrect: false,
+                        reply: "「停停停！我不想聽你開會的過程和你們部門的糾紛。到底結果是什麼？浪費我時間。」",
+                        feedback: "❌ 失敗。D 型人非常注重目標性與結論。千萬不要給他冗長的「泛泛之談」或「過程細節描述」。"
+                    }
+                ]
+            },
+            'I': {
+                name: "影響型網紅 (I)",
+                avatar: "I",
+                color: "bg-teal-500",
+                intro: "「哈囉！最近上線的短影片大家有看到嗎？我覺得這整個設計超特別、超驚奇的耶！你覺得怎麼樣？」",
+                choices: [
+                    {
+                        text: "「真的很精彩、超級有趣！你在裡面的笑容很有感染力，而且整個轉場特效非常有創意！你有什麼其他的拍攝新點子嗎？」",
+                        isCorrect: true,
+                        reply: "「哇！真的嗎！我也覺得那一段剪得很棒！其實我還有十個好玩的拍攝企劃，我們下次一起合作來拍吧！」",
+                        feedback: "💡 說服成功！對待 I 型人一定要：話題有趣，給予十足的讚賞慶祝與社交認可，並給他們展現自我、自我交談的舞台。"
+                    },
+                    {
+                        text: "「影片的觀看數還可以，不過在第12秒和24秒的轉場細節有剪輯漏洞，這不符合專業水準。我這裡有一份客觀的剪輯數據表格，你應該看一下。」",
+                        isCorrect: false,
+                        reply: "「呃...是嗎...大家都說很有趣啊...好啦，我知道了，有空再說吧...（默默退縮）」",
+                        feedback: "❌ 失敗。I 型人非常重情感與社交認可，害怕失去影響力被無視。直接拋出死板、冷酷的「細節批判」會立刻關閉他們的溝通欲望。"
+                    }
+                ]
+            },
+            'S': {
+                name: "穩健型伴侶 (S)",
+                avatar: "S",
+                color: "bg-sky-500",
+                intro: "「我們維持現在安靜同居的生活不就好了嗎？你為什麼一定要換高壓工作？萬一我們失去現在穩定的狀態怎麼辦？」",
+                choices: [
+                    {
+                        text: "「親愛的，我理解你的不安全感。我換工作前，已經為我們預留了足夠的預備金。我們週末的約會、散步習慣都不會變，我會一直在你身邊陪你度過這段過渡期。」",
+                        isCorrect: true,
+                        reply: "「如果是這樣...那你做這個決定我就放心了。我也會努力支持你的，只要我們在一起穩定不變就好。」",
+                        feedback: "💡 說服成功！對待 S 型人一定要：溝通溫和有禮貌、降低壓迫感，重視陪伴，給足「不變」的安全感，細水長流。"
+                    },
+                    {
+                        text: "「人往高處爬啊！你怎麼可以一直待在低耗能的安逸陷阱裡？人生就是要不斷突破、跳出舒適圈去鍛鍊肌肉，你不跟上我就被淘汰了！」",
+                        isCorrect: false,
+                        reply: "「跳出舒適圈...但我真的很累，我只想過安穩的生活...也許我們真的不是一路人，生氣爭執也沒有用。」",
+                        feedback: "❌ 失敗。S 型人極端抗拒突來的強烈改變，也害怕衝突。用雞湯式的口號逼迫他們「跳出舒適圈」，只會把他們推進恐慌與絕望，導致退縮妥協甚至分手。"
+                    }
+                ]
+            },
+            'C': {
+                name: "盡責型專家 (C)",
+                avatar: "C",
+                color: "bg-amber-500",
+                intro: "「你提的這個專案計畫，有具體的數據來源和市場調研報告嗎？如果邏輯不通，我是不會批准預算的。」",
+                choices: [
+                    {
+                        text: "「有的。我們根據這份 2026 年最新大數據調查（見第二頁表格），其中 CJO 行業轉化率為 4.2%。這是客觀事實，您可以仔細審閱這份專業架構。」",
+                        isCorrect: true,
+                        reply: "「很好，有客觀數據支撐。數據顯示這個邏輯完全成立。我需要半天時間獨自消化這份報告，明天給予你審核結論。」",
+                        feedback: "💡 說服成功！對待 C 型人一定要：直接用事實、專業和數據說話，切忌感性感傷，並留給他們單獨思考消化的安全距離與空間。"
+                    },
+                    {
+                        text: "「經理，請相信我的直覺！我有鋼鐵般的意志力，這個專案絕對是熱門爆款，我保證只要我們大家熱情滿滿、拼一把，一定能打動客戶的！」",
+                        isCorrect: false,
+                        reply: "「直覺？熱情？在商業決策裡，這些虛無縹緲的感性語言等同於噪音。這份報告不及格，重新去做。」",
+                        feedback: "❌ 失敗。C 型人是極致的完美與邏輯主義者，害怕出錯。對他們講空泛的感性語言、激情鼓舞或缺乏事實的保證，會讓他們認為你極端不專業且不靠譜。"
+                    }
+                ]
+            }
+        };
+
+        function setDiscTarget(targetChar) {
+            discCurrentTarget = targetChar;
+            const data = discScenarioData[targetChar];
+            
+            // Highlight Button
+            document.querySelectorAll('.disc-target-btn').forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'bg-indigo-50/50');
+                btn.classList.add('border-slate-200', 'hover:bg-slate-50');
+            });
+            const activeBtn = document.getElementById(`disc-target-${targetChar}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-slate-200', 'hover:bg-slate-50');
+                activeBtn.classList.add('border-indigo-600', 'bg-indigo-50/50');
+            }
+
+            // Update chat header and bubble
+            const chatHeaderAvatar = document.getElementById('chat-header-avatar');
+            chatHeaderAvatar.className = `w-3.5 h-3.5 rounded-full ${data.color}`;
+            document.getElementById('chat-header-name').innerText = data.name;
+            
+            const chatBubbleAvatar = document.getElementById('chat-bubble-avatar');
+            chatBubbleAvatar.className = `w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xs text-white ${data.color}`;
+            chatBubbleAvatar.innerText = data.avatar;
+
+            // Reset Chat Log with Target Statement
+            const chatLog = document.getElementById('chat-log');
+            chatLog.innerHTML = `
+                <div class="text-center">
+                    <span class="inline-block text-[10px] font-bold bg-slate-200 text-slate-600 px-2.5 py-0.5 rounded-full">對方已進入視窗。使用溝通指南說服他！</span>
+                </div>
+                <div class="flex space-x-3 items-start">
+                    <div class="w-8 h-8 rounded-full ${data.color} text-white flex-shrink-0 flex items-center justify-center font-bold text-xs">${data.avatar}</div>
+                    <div class="bg-white border border-slate-100 p-3.5 rounded-2xl rounded-tl-none shadow-sm max-w-sm">
+                        <p id="chat-target-statement" class="text-xs sm:text-sm text-slate-700 font-medium">${data.intro}</p>
+                    </div>
+                </div>
+            `;
+
+            // Update Choice buttons
+            const choicesContainer = document.getElementById('chat-choices-container');
+            choicesContainer.innerHTML = '';
+            
+            data.choices.forEach((choice, idx) => {
+                choicesContainer.innerHTML += `
+                    <button onclick="submitDiscChoice(${idx})" class="w-full text-left p-3 border border-slate-200 hover:border-indigo-600 hover:bg-indigo-50/30 rounded-xl transition text-xs sm:text-sm text-slate-700 font-medium">
+                        ${choice.text}
+                    </button>
+                `;
+            });
+        }
+
+        function submitDiscChoice(idx) {
+            const data = discScenarioData[discCurrentTarget];
+            const choice = data.choices[idx];
+            const chatLog = document.getElementById('chat-log');
+
+            // 1. Append User's Response
+            chatLog.innerHTML += `
+                <div class="flex space-x-3 items-start justify-end">
+                    <div class="bg-indigo-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm max-w-sm">
+                        <p class="text-xs sm:text-sm font-medium">${choice.text}</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex-shrink-0 flex items-center justify-center font-bold text-xs">我</div>
+                </div>
+            `;
+
+            // Scroll chat down
+            chatLog.scrollTop = chatLog.scrollHeight;
+
+            // 2. Append Target's Reaction after a slight delay
+            setTimeout(() => {
+                const badgeColor = choice.isCorrect ? 'bg-emerald-500' : 'bg-rose-500';
+                const textColor = choice.isCorrect ? 'text-emerald-800' : 'text-rose-800';
+                const paneBg = choice.isCorrect ? 'bg-emerald-50 border-emerald-100' : 'bg-rose-50 border-rose-100';
+                
+                chatLog.innerHTML += `
+                    <div class="flex space-x-3 items-start">
+                        <div class="w-8 h-8 rounded-full ${data.color} text-white flex-shrink-0 flex items-center justify-center font-bold text-xs">${data.avatar}</div>
+                        <div class="bg-white border border-slate-100 p-3.5 rounded-2xl rounded-tl-none shadow-sm max-w-sm space-y-2">
+                            <p class="text-xs sm:text-sm text-slate-700 font-medium">${choice.reply}</p>
+                            
+                            <div class="${paneBg} border p-3 rounded-xl text-[11px] leading-relaxed">
+                                <span class="inline-block text-[9px] text-white font-extrabold px-1.5 py-0.5 rounded ${badgeColor} uppercase tracking-wider mb-1">
+                                    ${choice.isCorrect ? '溝通成功' : '溝通踩雷'}
+                                </span>
+                                <p class="${textColor}">${choice.feedback}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }, 600);
+        }
+
+        // ==========================================
+        // 5. THINKTANK LIBRARY DATA & FILTERS
+        // ==========================================
+        const libraryData = [
+            {
+                id: 1,
+                title: "《納瓦爾寶典》：打造你就算睡覺也在賺錢的資產",
+                source: "將改變你的財富、職涯、人生的一本書《納瓦爾寶典》財富篇",
+                tags: ["致富", "個人成長"],
+                category: "致富思維",
+                nugget: "「致富不是靠運氣，而是一套可學會的方法。打造成為一個：就算運氣路過，也會被你吸過來的長期信譽之人。」",
+                steps: [
+                    "<strong>① 商品化自我：</strong>利用你與生俱來的特質（你做起來像玩，別人做起來像工作），打包成一套不易複製的「獨有知識」。",
+                    "<strong>② 尋找大市場：</strong>全球70億人中，就算只有1%的人需要你的獨有知識，也是7000萬人，利用網際網路一對多無限放大。",
+                    "<strong>③ 運用槓桿力量：</strong>人力槓桿（帶人很累）、資本槓桿（富豪專利）、數位無編輯成本產品槓桿（軟體、影片、書籍，新時代最強槓桿）。",
+                    "<strong>④ 勇敢承擔責任：</strong>要想使用強大槓桿，你必須主動承擔責任，敢在失敗時把名字放在最前面，從而建立深厚的長線信用。"
+                ]
+            },
+            {
+                id: 2,
+                title: "為什麼你不該相信支持你觀點的信息？",
+                source: "為什麼你不該相信，支持自己觀點的信息？",
+                tags: ["自控", "心理學研究"],
+                category: "心理學認知",
+                nugget: "「謊言重複多次，大腦的熟稔感就會壓倒理性，演變成『虛幻真理效應』。人捍衛的不是真理，而是身份認同。」",
+                steps: [
+                    "<strong>① 確認偏誤 (Confirmation Bias)：</strong>人會極力尋找支撐自己觀點的證據（如熱開水治百病），對相反真相立刻排斥、視而不見。",
+                    "<strong>② 可得性啟發 (Availability Heuristic)：</strong>大腦過度依賴最快浮現的資訊作判斷（例如直覺認為警察比漁民工作更危險，但統計上海上作業的漁民死亡率遠高於警察）。",
+                    "<strong>③ 情緒偏誤 (Emotion Bias)：</strong>造謠抹黑者利用引起強烈恐懼、憤怒的偏誤，壓制理性大腦，逼迫大腦本能規避風險、轉發分享。",
+                    "<strong>④ 認知失調與同溫層：</strong>在團體迷思中互相取暖、維護身份認同，即使邏輯正常也會為了『認知一致』去堅信荒謬的假信息。"
+                ]
+            },
+            {
+                id: 3,
+                title: "近 80% 人無法看完這期！手機設計的六大成癮關卡",
+                source: "近80%的人，沒辦法把這集從頭看到尾！6個上癮設計！3個解決方法",
+                tags: ["上癮", "自控", "社交成癮"],
+                category: "防成癮指南",
+                nugget: "「手機上癮在生理上被證實等同於非藥物吸毒。設計師用六個多巴胺機關，永久性摧毀你的專注力。」",
+                steps: [
+                    "<strong>① 推送通知：</strong>利用反饋獎勵暗示（亮螢幕或鈴聲），如同巴甫洛夫訓狗的暗示，逼你無意識拿起手機。",
+                    "<strong>② 無限滾動與自播：</strong>引導損失厭惡，誘發 FOMO（錯失恐懼症），生怕一天不看手機就與社會脫節。",
+                    "<strong>③ 15秒短影音：</strong>刺激 VTA 區釋放大腦快感，如賭徒坐在老虎機前，輸不起，只能一再滑動拉桿。",
+                    "<strong>④ 點讚、評論、分享：</strong>滿足人類的社會認同與在線身份。即便同坐餐桌前，人們也選擇給虛擬身份認同點讚。",
+                    "<strong>⑤ 個性化推薦：</strong>大腦在探索「未知新奇」時會自發分泌多巴胺，推薦算法藉此精準投其所好、勾起好奇心。",
+                    "<strong>⑥ 擺脫三步法：</strong>利用『螢幕時間』查看使用時段 ➡️ 設定不可用手機的黃金時段 ➡️ 把手機放離視線（增加壞習慣的執行阻力）。"
+                ]
+            },
+            {
+                id: 4,
+                title: "網紅與「心靈成長課」背後的心理鏈鎖",
+                source: "百萬網紅分手後，詭異行徑是怎麼回事？我也被人推過心靈成長課...",
+                tags: ["諮商", "心理學研究"],
+                category: "心理自救",
+                nugget: "「當人處於八年感情結束等極端低潮時，容易將心靈諮商、傳銷式的成長課視為唯一的『溺水真理』。」",
+                steps: [
+                    "<strong>① 網紅的職業高壓：</strong>長期暴露在重目睽睽下，容易延伸出『冒牌者症候群』、憂鬱與焦慮。急需情緒宣洩窗口。",
+                    "<strong>② 傳銷式的『拉下線功課』：</strong>這類高昂心靈課通常不收提成，但以『畢業功課』為由逼學員義務拉三個人進來，容易在同行圈內擴張。",
+                    "<strong>③ 網路的情緒感染：</strong>網路社交平台上傳遞的往往不是真正的資訊，而是情緒。聳人聽聞、陰謀論的邪教謠言更容易大範圍擴散。"
+                ]
+            },
+            {
+                id: 5,
+                title: "別再急著跳出舒適圈！你該「慢慢擴張」它",
+                source: "你明明不想這樣，卻離不開的生活！3個步驟改變窘境！| 維思維",
+                tags: ["自控", "個人成長"],
+                category: "心智重建",
+                nugget: "「舒適圈不是敵人，而是你大腦的能量根基地。盲目地往外跳只會把你推入恐慌區，讓你陷入自我否定。」",
+                steps: [
+                    "<strong>① 神經可塑性陷阱：</strong>如果長期只待在同一個低耗能舒適圈（如回家只躺著滑手機），你的舒適圈會『縮小』。你的大腦會不適應高耗能，讓你對一點點壓力也無法承受。",
+                    "<strong>② 耶斯多德生定律：</strong>1908年的老鼠實驗證明：壓力太低、太安逸表現不佳；壓力過大、亂成一團也表現極差。唯有在『學習圈（最佳表現區）』才會成長最快。",
+                    "<strong>③ 舒適圈擴張三步法：</strong><br> - <strong>步驟一：只接觸不挑戰</strong>（想健身就去健身房繞一圈；想看書就翻開目錄，降低大腦對陌生感的防禦抗拒）。<br> - <strong>步驟二：累積自我效能感</strong>（胸有成竹。每天做一件100%能做到的小事，如1個伏地挺身，累積成功經驗）。<br> - <strong>步驟三：給自己剛剛好的不舒服</strong>（每週設定一個微緊張、不焦慮的挑戰，如上班換一條路走，訓練大腦承受度）。"
+                ]
+            },
+            {
+                id: 6,
+                title: "《人生的五種財富》：時間與社會關係診斷",
+                source: "你已經錯過2000週了…1張「生命週曆」將改變你的人生？ 《人生的五種財富》",
+                tags: ["致富", "個人成長"],
+                category: "致富思維",
+                nugget: "「真正的富有包含：時間、社會、心理、身體與金錢。一味拿有限的時間去換取無限的金錢，人生終將落空。」",
+                steps: [
+                    "<strong>① 2000週生命週曆：</strong>假設人能活到 80 歲，一生其實只有 4000 幾週。除掉你已經過完的部分、除掉睡覺的三分之一，剩下的可掌控時間無比昂貴。你願意少十年壽命去換100萬嗎？",
+                    "<strong>② 誠實的關係圖診斷：</strong>列出你生活中的15位社交關係 ➡️ 評估是「支持性、貶低性、還是矛盾性」並標註互動頻率 ➡️ 在十字座標上劃分「綠色區（優先維護）」、「機會區（主動聯絡）」、「紅色區（減少互動）」。"
+                ]
+            },
+            {
+                id: 7,
+                title: "自學語言與任何技能的「間隔重現」底層邏輯",
+                source: "這超瘋的語言APP，真的能教會你英文嗎？多鄰國竟然有論文證明！【4步驟學會任何語言】",
+                tags: ["自控", "個人成長"],
+                category: "習慣與自控",
+                nugget: "「學語言的本質不是累積大腦的『知識』，而是學騎腳踏車一樣，是一項『技能』。必須上車摔倒，不能只在岸上看理論。」",
+                steps: [
+                    "<strong>① 技能習得理論三階段：</strong>認知階段（輸入發音與簡單語法地圖）➡️ 連接階段（大膽說出來，允許自己犯錯喝水，讓大腦留下印象修正）➡️ 自動化階段（大腦不假思索直接內化表達）。",
+                    "<strong>② 可理解輸入理論 (i + 1)：</strong>你輸入的必須是你目前程度 (i) 再難一點點、但保證能看懂的內容。如果完全不懂，大腦會將它歸為毫無吸收價值的噪音。",
+                    "<strong>③ 遺忘曲線與間隔練習法：</strong>學過的知識會快速流失。在遺忘的邊緣再次重複學習，能最有效提防遺忘曲線、牢固記憶深溝。"
+                ]
+            },
+            {
+                id: 8,
+                title: "DISC 相剋溝通法：輕鬆聊進對方心坎裡",
+                source: "【DISC 人格分析】4種「相剋人格」說話術，輕鬆聊到對方心裡！",
+                tags: ["個人成長", "心理學研究"],
+                category: "心理學認知",
+                nugget: "「人人同時擁有 D, I, S, C 性格。對待不同人格，用對方最舒服的說話方式對待，就能在談判中克制對方。」",
+                steps: [
+                    "<strong>① 對待【D掌控型】：</strong>目標性強。必須先給結果結論，少說囉嗦細節過程，直接提出你的解決方案，保持簡潔高效。",
+                    "<strong>② 對待【I影響型】：</strong>社交性強。話題一定要有趣，提供給他們發言、展現自我的舞台，給予熱情的認可、回饋與讚美。",
+                    "<strong>③ 對待【S穩健型】：</strong>追求平穩與安全感。說話要有禮貌，不要施加壓迫與對抗性爭執。多關心他們的期待，給予細水長流的溫暖，幫他們做出妥協的決定。",
+                    "<strong>④ 對待【C盡責型】：</strong>追求邏輯與完備性。講話一定要注意客觀事實與專業度，絕對不要說感性的空話，直截了當用「數據與邏輯」說話，並留出空間給他們消化。"
+                ]
+            },
+            {
+                id: 9,
+                title: "心理自救指南《蛤蟆先生去看心理師》：兒童自我狀態",
+                source: "這不是童話，是一趟心理自救！憂鬱和心理諮商的真相《蛤蟆先生去看心理師》EP1",
+                tags: ["諮商", "心理學研究"],
+                category: "心理諮商",
+                nugget: "「心理諮商是一個自願合約與合作過程。不是我給你方案，而是我們一起探索、重建你心底的自主動機。」",
+                steps: [
+                    "<strong>① 社會期望反應：</strong>當諮商師問『你今天感覺怎麼樣』，蛤蟆反射性回答『挺好的』。這其實是從小壓抑痛苦的自動假回答。第一步是察覺假回答、敞開情緒。",
+                    "<strong>② 治療性沉默：</strong>諮商師的沉默不是刻意刁難，而是引導你把注意力從外部依賴轉回感受自己的內心，引發情緒的宣洩。",
+                    "<strong>③ 兒童自我狀態 (Child Ego State)：</strong>當你在生活中受了委屈，情緒崩潰哭泣或退縮時，你的感受和行為和4、5歲童年被嚴厲父母指責時的狀態一模一樣，你只是在重演悲傷劇本。"
+                ]
+            },
+            {
+                id: 10,
+                title: "蛤蟆先生去看心理師：你是不是在玩「可憐小小的我」？",
+                source: "你痛苦的真正原因？什麼是「父母自我狀態」？《蛤蟆先生去看心理師》心理學分析 EP3",
+                tags: ["諮商", "心理學研究"],
+                category: "心理諮商",
+                nugget: "「你可能在無意識地配合他人共謀：扮演一個可憐的受害者。因為扮演弱者是安全的，它能幫你逃避對抗的壓力。」",
+                steps: [
+                    "<strong>① 挑剔型「父母自我狀態」：</strong>我們從小內化了父母嚴厲、挑剔、評判是非對錯的聲音。老獾處於這種狀態，他高傲、用批評的眼神評判他人。",
+                    "<strong>② 蛤蟆的自我審判：</strong>蛤蟆不對別人發火，但他在「审查自己」。他內化了極端挑剔的父母聲音，成了自己的法官，一輩子判定自己有罪、譴責自己、甚至施以極端懲罰。",
+                    "<strong>③ 自我接納：</strong>唯一能幫你的人是你自己。你需要把內心尖銳的評判者轉化成支持者，允許自己不完美、犯錯，依然認定自己有價值。"
+                ]
+            },
+            {
+                id: 11,
+                title: "蛤蟆先生大結局：我好，你也好的人生命題",
+                source: "「我不好，你好」「我好，你也好」是什麼狀態？蛤蟆先生去看心理師【大結局】",
+                tags: ["諮商", "心理學研究"],
+                category: "心理諮商",
+                nugget: "「情緒不是由事件造成的，而是由你的『人生坐標』去解讀。我好、你也好，是一場需要靠終身行為去踐行的承諾。」",
+                steps: [
+                    "<strong>① 心理遊戲「猜猜我在想什麼」：</strong>上司或老師玩這種惡意心理遊戲，表面上在教書、其實只是為了證明自己聰明，讓下屬感到愚蠢、無力、自我否定。",
+                    "<strong>② 情緒移情：</strong>蛤蟆對諮商師發脾氣爆發，其實是把對嚴厲父親的情感移情到了諮商師身上。在安全的諮商環境下，蛤蟆生平第一次在權威關係中站穩了自己的腳步，說出真話。",
+                    "<strong>③ 我好，你也好：</strong>不再處於「我不好你很好（自責憂鬱）」、「我好你不好（憤怒評判別人的獾）」、或「我不好你也不好（冷漠絕望）」，而是認定自己有價值，並真誠相信與尊重他人。"
+                ]
+            },
+            {
+                id: 12,
+                title: "《花束般的戀愛》：別把假性親密關係當成真愛",
+                source: "【不懂這點】注定談分手的戀愛！何謂「花束般的戀愛」？【心理分析】",
+                tags: ["個人成長", "心理學研究"],
+                category: "心理學認知",
+                nugget: "「花束般盛開的戀愛終會面臨時間考驗。別在愛情領土擴大、面臨現實責任時，把退讓不愛誤認為是親情。」",
+                steps: [
+                    "<strong>① 格格不入的理想幻境：</strong>年輕的情侶用「相似性（穿同款鞋、看同本書、對世俗批判）」來逃避現實。但相似不等於一體，個體依然存在極大差異。",
+                    "<strong>② 現實責任的撕裂：</strong>當小麥為了生計進入「責任浴缸（出社會工作）」，他的精神容積被報告、客戶辱罵塞滿，再也讀不進漫畫與理想小說。此時，他和小卷的愛情感知產生了致命分歧。",
+                    "<strong>③ 假性親密關係 (Pseudo-Intimacy)：</strong>當激情退去，兩人在不愛、不溝通、不吵架的冷漠中，試圖用「結婚生子」來降低標準過完一輩子。這是利用形式上的在一起，來迴避精神上真正的融合。"
+                ]
+            },
+            {
+                id: 13,
+                title: "吃播網紅大反轉與「替代性滿足」心理學",
+                source: "吃播一哥用「2年預錄影片」騙過全網！肥胖是假的？人為何愛看吃播 Mukbang？",
+                tags: ["上癮", "自控"],
+                category: "防成癮指南",
+                nugget: "「你看到的只是別人想給你看到的。摘下頭套前，你永遠不知道底層隱藏著什麼樣的社會實驗。」",
+                steps: [
+                    "<strong>① 替代性滿足（弗洛伊德）：</strong>當人無法放肆吃高糖高油食物時，大腦中的「鏡像神經元」會模擬他人享用美食，釋放多巴胺，在生理不增加負擔下獲得代償快感。",
+                    "<strong>② 網戀式孤獨緩解：</strong>吃播（Mukbang）在獨居、單身人口比例高的地方（如韓國）爆紅。觀眾把博主當成吃飯社交的陪伴，以低社交成本緩解內心深處的孤獨與空洞。"
+                ]
+            }
+        ];
+
+        function populateLibrary() {
+            const grid = document.getElementById('library-grid');
+            grid.innerHTML = '';
+            
+            libraryData.forEach(item => {
+                // generate tag badges
+                let tagsHtml = item.tags.map(tag => `
+                    <span class="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-bold text-indigo-700 ring-1 ring-inset ring-indigo-600/10">${tag}</span>
+                `).join('');
+
+                grid.innerHTML += `
+                    <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-title="${item.title.toLowerCase()}" data-nugget="${item.nugget.toLowerCase()}" data-source="${item.source.toLowerCase()}" data-category="${item.category}">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200/50">${item.category}</span>
+                                <div class="flex space-x-1">${tagsHtml}</div>
+                            </div>
+                            <h4 class="font-bold text-slate-950 text-sm sm:text-base leading-snug hover:text-indigo-600 cursor-pointer" onclick="openLibraryModal(${item.id})">${item.title}</h4>
+                            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed font-light">${item.nugget}</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between">
+                            <span class="text-[10px] text-slate-400 truncate max-w-[150px]">🎬 ${item.source}</span>
+                            <button onclick="openLibraryModal(${item.id})" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition flex items-center">
+                                展開實操框架 ➡️
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterLibrary() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.getElementById('library-grid').children;
+            
+            for (let card of cards) {
+                const title = card.getAttribute('data-title');
+                const nugget = card.getAttribute('data-nugget');
+                const source = card.getAttribute('data-source');
+                
+                if (title.includes(query) || nugget.includes(query) || source.includes(query)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            }
+        }
+
+        function filterByTag(tag) {
+            // Update button styles
+            document.querySelectorAll('.library-tag-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+            });
+            const activeBtn = document.getElementById('tag-' + tag);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                activeBtn.classList.add('bg-indigo-600', 'text-white');
+            }
+
+            const cards = document.getElementById('library-grid').children;
+            for (let card of cards) {
+                const category = card.getAttribute('data-category');
+                
+                if (tag === 'all') {
+                    card.classList.remove('hidden');
+                } else if (tag === '致富' && category === '致富思維') {
+                    card.classList.remove('hidden');
+                } else if (tag === '諮商' && category === '心理諮商') {
+                    card.classList.remove('hidden');
+                } else if (tag === '上癮' && category === '防成癮指南') {
+                    card.classList.remove('hidden');
+                } else if (tag === '自控' && (category === '習慣與自控' || category === '心智重建')) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            }
+        }
+
+        function openLibraryModal(id) {
+            const item = libraryData.find(x => x.id === id);
+            if (!item) return;
+
+            document.getElementById('modal-category').innerText = item.category;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-source').innerText = `🎬 來源影片稿件：${item.source}`;
+            document.getElementById('modal-nugget').innerText = item.nugget;
+
+            const stepsContainer = document.getElementById('modal-steps');
+            stepsContainer.innerHTML = '';
+            item.steps.forEach(step => {
+                stepsContainer.innerHTML += `
+                    <div class="flex items-start space-x-2.5 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <span class="text-indigo-600 font-extrabold mt-0.5">▪</span>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${step}</p>
+                    </div>
+                `;
+            });
+
+            document.getElementById('library-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Lock background scroll
+        }
+
+        function closeLibraryModal() {
+            document.getElementById('library-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Unlock background scroll
+        }
+
+        // ==========================================
+        // WINDOW INITIALIZATION ON LOAD
+        // ==========================================
+        window.onload = function() {
+            // 1. Initialise the Library grid populator
+            populateLibrary();
+            
+            // 2. Initialise MBTI Simulation with INFJ as default
+            updateMbtiSimulation();
+
+            // 3. Initialise DISC simulation with Target D
+            setDiscTarget('D');
+        }
+    </script>
+</body>
+</html>
